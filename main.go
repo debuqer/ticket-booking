@@ -17,7 +17,8 @@ func main() {
 	var bookings = []string{}
 
 	for {
-		if remainingTickets == 0 {
+		noTicketRemaining := remainingTickets == 0
+		if noTicketRemaining {
 			fmt.Println("Sorry, No tickets left!")
 			break
 		}
