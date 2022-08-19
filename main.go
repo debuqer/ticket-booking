@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"golang/helper"
+	"time"
 )
 
 var conferenceName string = "Go Conference"
@@ -110,6 +111,7 @@ func bookTicket(userTickets uint, firstName string, lastName string, email strin
 }
 
 func sendTicket(userTickets uint, firstName string, lastName string, email string) {
+	time.Sleep(10 * time.Second)
 	ticket := fmt.Sprintf("%v tickets sent for %v %v", userTickets, firstName, lastName)
 	fmt.Println("***********")
 	fmt.Printf("Sending ticket: %v\n to email %s\n", ticket, email)
