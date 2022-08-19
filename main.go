@@ -16,7 +16,7 @@ func main() {
 
 	var bookings = []string{}
 
-	for {
+	for remainingTickets > 0 && len(bookings) < int(conferenceTickets) {
 		noTicketRemaining := remainingTickets == 0
 		if noTicketRemaining {
 			fmt.Println("Sorry, No tickets left!")
@@ -39,7 +39,7 @@ func main() {
 		fmt.Scan(&userTickets)
 
 		if userTickets <= remainingTickets {
-			remainingTickets = conferenceTickets - userTickets
+			remainingTickets = remainingTickets - userTickets
 			bookings = append(bookings, firstName+" "+lastName)
 
 			fmt.Printf("Tank you %v %v for booking %v tickets. You will receive a confirmation email at %v.\n", firstName, lastName, userTickets, email)
