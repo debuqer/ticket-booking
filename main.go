@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"golang/helper"
+	"sync"
 	"time"
 )
 
@@ -20,44 +21,46 @@ type userData struct {
 	userTickets uint
 }
 
+var wg = sync.WaitGroup{}
+
 func main() {
 
 	greetUsers()
 
-	for remainingTickets > 0 && len(bookings) < int(conferenceTickets) {
-		var firstName string
-		var lastName string
-		var email string
-		var userTickets uint
+	var firstName string
+	var lastName string
+	var email string
+	var userTickets uint
 
-		firstName, lastName, email, userTickets = getUserInput()
-		isValidName, isValidEmail, isValidUserTickets := helper.ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
+	firstName, lastName, email, userTickets = getUserInput()
+	isValidName, isValidEmail, isValidUserTickets := helper.ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
-		if isValidUserTickets && isValidEmail && isValidName {
-			bookTicket(userTickets, firstName, lastName, email)
+	if isValidUserTickets && isValidEmail && isValidName {
+		bookTicket(userTickets, firstName, lastName, email)
 
-			go sendTicket(userTickets, firstName, lastName, email)
+		wg.Add(1)
+		go sendTicket(userTickets, firstName, lastName, email)
 
-			firstNames := getFirstNames()
-			fmt.Printf("The first names of bookings are: %v\n", firstNames)
+		firstNames := getFirstNames()
+		fmt.Printf("The first names of bookings are: %v\n", firstNames)
 
-			noTicketRemaining := remainingTickets == 0
-			if noTicketRemaining {
-				fmt.Println("Sorry, No tickets left!")
-				break
-			}
-		} else {
-			if !isValidName {
-				fmt.Println("First name or last name you enterd is too short")
-			}
-			if !isValidEmail {
-				fmt.Println("Email address you enterd does not contains @")
-			}
-			if !isValidUserTickets {
-				fmt.Println("Number of tickets is not valid")
-			}
+		noTicketRemaining := remainingTickets == 0
+		if noTicketRemaining {
+			fmt.Println("Sorry, No tickets left!")
+		}
+	} else {
+		if !isValidName {
+			fmt.Println("First name or last name you enterd is too short")
+		}
+		if !isValidEmail {
+			fmt.Println("Email address you enterd does not contains @")
+		}
+		if !isValidUserTickets {
+			fmt.Println("Number of tickets is not valid")
 		}
 	}
+
+	wg.Wait()
 }
 
 func greetUsers() {
@@ -116,4 +119,6 @@ func sendTicket(userTickets uint, firstName string, lastName string, email strin
 	fmt.Println("***********")
 	fmt.Printf("Sending ticket: %v\n to email %s\n", ticket, email)
 	fmt.Println("***********")
+
+	wg.Done()
 }
