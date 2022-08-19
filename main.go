@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"golang/helper"
 	"strings"
 )
 
@@ -23,7 +24,7 @@ func main() {
 		var userTickets uint
 
 		firstName, lastName, email, userTickets = getUserInput()
-		isValidName, isValidEmail, isValidUserTickets := validateUserInput(firstName, lastName, email, userTickets, remainingTickets)
+		isValidName, isValidEmail, isValidUserTickets := helper.ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
 		if isValidUserTickets && isValidEmail && isValidName {
 			bookTicket(userTickets, firstName, lastName, email)
