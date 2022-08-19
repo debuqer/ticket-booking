@@ -33,4 +33,6 @@ func main() {
 
 	fmt.Printf("Tank you %v %v for booking %v tickets. You will receive a confirmation email at %v.\n", firstName, lastName, userTickets, email)
 	fmt.Printf("%v tickets remaining for %v.\n", remainingTickets, conferenceName)
+
+	fmt.Printf("These are all our booking: %v\n", bookings)
 }
