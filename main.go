@@ -43,7 +43,7 @@ func main() {
 			bookings = append(bookings, firstName+" "+lastName)
 
 			fmt.Printf("Tank you %v %v for booking %v tickets. You will receive a confirmation email at %v.\n", firstName, lastName, userTickets, email)
-			fmt.Printf("%v tickets remaining for %v.\n", remainingTickets, conferenceName)
+			fmt.Printf("Only %v tickets remaining for %v.\n", remainingTickets, conferenceName)
 
 			firstNames := []string{}
 
