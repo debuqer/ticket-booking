@@ -23,13 +23,6 @@ func main() {
 		var userTickets uint
 
 		firstName, lastName, email, userTickets = getUserInput()
-
-		noTicketRemaining := remainingTickets == 0
-		if noTicketRemaining {
-			fmt.Println("Sorry, No tickets left!")
-			break
-		}
-
 		isValidName, isValidEmail, isValidUserTickets := validateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
 		if isValidUserTickets && isValidEmail && isValidName {
@@ -37,6 +30,12 @@ func main() {
 
 			firstNames := getFirstNames(bookings)
 			fmt.Printf("The first names of bookings are: %v\n", firstNames)
+
+			noTicketRemaining := remainingTickets == 0
+			if noTicketRemaining {
+				fmt.Println("Sorry, No tickets left!")
+				break
+			}
 		} else {
 			if !isValidName {
 				fmt.Println("First name or last name you enterd is too short")
