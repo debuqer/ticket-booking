@@ -17,6 +17,11 @@ func main() {
 	var bookings = []string{}
 
 	for {
+		if remainingTickets == 0 {
+			fmt.Println("Sorry, No tickets left!")
+			break
+		}
+
 		// ask user for their name and their number of tickets
 		var firstName string
 		var lastName string
