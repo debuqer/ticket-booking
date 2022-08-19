@@ -9,7 +9,6 @@ func main() {
 	var conferenceName string = "Go Conference"
 	const conferenceTickets uint = 50
 	var remainingTickets uint = conferenceTickets
-
 	var bookings = []string{}
 
 	greetUsers(conferenceName, int(conferenceTickets), int(remainingTickets))
