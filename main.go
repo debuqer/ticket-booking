@@ -29,7 +29,7 @@ func main() {
 	fmt.Scan(&userTickets)
 
 	remainingTickets = conferenceTickets - userTickets
-	bookings[len(bookings)-1] = firstName + " " + lastName
+	bookings[0] = firstName + " " + lastName
 
 	fmt.Printf("Tank you %v %v for booking %v tickets. You will receive a confirmation email at %v.\n", firstName, lastName, userTickets, email)
 	fmt.Printf("%v tickets remaining for %v.\n", remainingTickets, conferenceName)
