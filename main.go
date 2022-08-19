@@ -3,9 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	conferenceName := "Go Conference"
-	const conferenceTickets int = 50
-	remainingTickets := conferenceTickets
+	var conferenceName string = "Go Conference"
+	const conferenceTickets uint = 50
+	var remainingTickets uint = conferenceTickets
 
 	fmt.Printf("Welcome to %v booking application\n", conferenceName)
 	fmt.Printf("We have total of %d tickets and %d are still available\n", conferenceTickets, remainingTickets)
