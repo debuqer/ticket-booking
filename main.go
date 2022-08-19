@@ -56,7 +56,6 @@ func main() {
 		} else {
 			fmt.Printf("Sorry! You cant reserve %d tickets, only %d remained\n", userTickets, remainingTickets)
 			fmt.Println("Please try again")
-			continue
 		}
 	}
 }
