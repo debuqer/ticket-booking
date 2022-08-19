@@ -46,7 +46,8 @@ func main() {
 			fmt.Printf("Tank you %v %v for booking %v tickets. You will receive a confirmation email at %v.\n", firstName, lastName, userTickets, email)
 			fmt.Printf("Only %v tickets remaining for %v.\n", remainingTickets, conferenceName)
 
-			printFirstNames(bookings)
+			firstNames := getFirstNames(bookings)
+			fmt.Printf("The first names of bookings are: %v\n", firstNames)
 		} else {
 			if !isValidName {
 				fmt.Println("First name or last name you enterd is too short")
@@ -67,7 +68,7 @@ func greetUsers(conferenceName string, conferenceTickets int, remainingTickets i
 	fmt.Println("Get your tickets here to attend")
 }
 
-func printFirstNames(bookings []string) {
+func getFirstNames(bookings []string) []string {
 	firstNames := []string{}
 
 	for _, booking := range bookings {
@@ -75,5 +76,5 @@ func printFirstNames(bookings []string) {
 		firstNames = append(firstNames, names[0])
 	}
 
-	fmt.Printf("The first names of bookings are: %v\n", firstNames)
+	return firstNames
 }
